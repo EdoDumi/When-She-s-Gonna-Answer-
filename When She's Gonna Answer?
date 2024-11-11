@@ -1,0 +1,296 @@
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When She's Gonna Answer?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Arial', sans-serif;
+        }
+        .roulette-table {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background-color: green;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .roulette-cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            height: 40px;
+            cursor: pointer;
+        }
+        .green {
+            background-color: green;
+        }
+        .red {
+            background-color: red;
+        }
+        .black {
+            background-color: black;
+        }
+        .white {
+            background-color: white;
+            color: black;
+        }
+        .header-bg {
+            background-color: #2E7D32; /* Verde più scuro */
+        }
+        .footer-bg {
+            background-color: #2E7D32; /* Verde più scuro */
+        }
+        .last-message-section {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center p-4">
+    <!-- Sezione Login -->
+    <div id="login-section" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center">
+        <div class="bg-white p-4 rounded-lg shadow-md w-full max-w-md">
+            <h2 class="text-xl font-bold mb-2">Login</h2>
+            <form id="login-form">
+                <div class="mb-4">
+                    <label for="username" class="block text-gray-700">Nome Utente</label>
+                    <input type="text" id="username" class="w-full p-2 border border-gray-300 rounded mt-1">
+                </div>
+                <button type="submit" class="w-full bg-green-600 text-white p-2 rounded">Accedi</button>
+            </form>
+        </div>
+    </div>
+
+    <header class="w-full flex flex-col items-center py-4 header-bg text-white text-2xl font-bold">
+        <div class="w-full flex justify-between items-center">
+            <span class="text-3xl font-extrabold tracking-wider">When She's Gonna Answer?</span>
+            <button id="admin-button" class="bg-white text-green-600 px-2 py-1 rounded text-sm">Admin</button>
+        </div>
+        <p class="text-lg mt-2">Scommetti su quanto tempo ci metterà "Lei" a rispondermi</p>
+    </header>
+    <main class="w-full max-w-md">
+        <section class="bg-white p-4 rounded-lg shadow-md my-4 last-message-section">
+            <h2 class="text-xl font-bold mb-2">Ultimo Messaggio</h2>
+            <p class="text-gray-700">Il suo ultimo messaggio è stato il: <span id="last-message-time">10 Novembre, 14:58</span></p>
+        </section>
+        <section class="bg-green-600 p-4 rounded-lg shadow-md my-4">
+            <div class="flex justify-between items-center mb-2">
+                <h2 class="text-xl font-bold text-white">Fai la tua scommessa</h2>
+                <p class="text-white">Punti: <span id="user-points">100</span></p>
+            </div>
+            <div class="flex justify-center mb-4">
+                <div class="roulette-cell green w-1/3" onclick="placeBet('<1h')"><1h</div>
+            </div>
+            <div class="roulette-table">
+                <div class="roulette-cell red" onclick="placeBet('1h')">1h</div>
+                <div class="roulette-cell black" onclick="placeBet('2h')">2h</div>
+                <div class="roulette-cell red" onclick="placeBet('3h')">3h</div>
+                <div class="roulette-cell black" onclick="placeBet('4h')">4h</div>
+                <div class="roulette-cell red" onclick="placeBet('5h')">5h</div>
+                <div class="roulette-cell black" onclick="placeBet('6h')">6h</div>
+                <div class="roulette-cell red" onclick="placeBet('7h')">7h</div>
+                <div class="roulette-cell black" onclick="placeBet('8h')">8h</div>
+                <div class="roulette-cell red" onclick="placeBet('9h')">9h</div>
+                <div class="roulette-cell black" onclick="placeBet('10h')">10h</div>
+                <div class="roulette-cell red" onclick="placeBet('11h')">11h</div>
+                <div class="roulette-cell black" onclick="placeBet('12h')">12h</div>
+                <div class="roulette-cell red" onclick="placeBet('13h')">13h</div>
+                <div class="roulette-cell black" onclick="placeBet('14h')">14h</div>
+                <div class="roulette-cell red" onclick="placeBet('15h')">15h</div>
+                <div class="roulette-cell black" onclick="placeBet('16h')">16h</div>
+                <div class="roulette-cell red" onclick="placeBet('17h')">17h</div>
+                <div class="roulette-cell black" onclick="placeBet('18h')">18h</div>
+                <div class="roulette-cell red" onclick="placeBet('19h')">19h</div>
+                <div class="roulette-cell black" onclick="placeBet('20h')">20h</div>
+                <div class="roulette-cell red" onclick="placeBet('21h')">21h</div>
+                <div class="roulette-cell black" onclick="placeBet('22h')">22h</div>
+                <div class="roulette-cell red" onclick="placeBet('23h')">23h</div>
+                <div class="roulette-cell black" onclick="placeBet('24h')">24h</div>
+            </div>
+            <div class="flex justify-center mt-4">
+                <div class="roulette-cell green w-1/3" onclick="placeBet('>24h')">>24h</div>
+            </div>
+            <div class="grid grid-cols-2 gap-1 mt-4">
+                <div class="roulette-cell green" onclick="placeBet('1-6h')">1-6h</div>
+                <div class="roulette-cell green" onclick="placeBet('6-12h')">6-12h</div>
+                <div class="roulette-cell green" onclick="placeBet('12-18h')">12-18h</div>
+                <div class="roulette-cell green" onclick="placeBet('18-24h')">18-24h</div>
+                <div class="roulette-cell green col-span-2" onclick="placeBet('1-12h')">1-12h</div>
+                <div class="roulette-cell green col-span-2" onclick="placeBet('12-24h')">12-24h</div>
+            </div>
+        </section>
+        <button id="leaderboard-button" class="w-full bg-green-600 text-white p-2 rounded mt-4">Classifica</button>
+    </main>
+
+    <!-- Sezione Admin -->
+    <div id="admin-section" class="hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center">
+        <div class="bg-white p-4 rounded-lg shadow-md w-full max-w-md relative">
+            <button id="close-admin" class="absolute top-2 right-2 text-gray-700 text-xl">&times;</button>
+            <h2 class="text-xl font-bold mb-2">Sezione Admin</h2>
+            <form id="admin-password-form">
+                <div class="mb-4">
+                    <label for="admin-password" class="block text-gray-700">Password Admin</label>
+                    <input type="password" id="admin-password" class="w-full p-2 border border-gray-300 rounded mt-1">
+                </div>
+                <button type="submit" class="w-full bg-green-600 text-white p-2 rounded">Invia</button>
+            </form>
+            <form id="admin-form" class="hidden">
+                <div class="mb-4">
+                    <label for="last-message-time-admin" class="block text-gray-700">Ultimo Messaggio</label>
+                    <input type="datetime-local" id="last-message-time-admin" class="w-full p-2 border border-gray-300 rounded mt-1">
+                </div>
+                <div class="mb-4">
+                    <label for="response-time" class="block text-gray-700">Tempo di Risposta Effettivo (in ore)</label>
+                    <input type="number" id="response-time" class="w-full p-2 border border-gray-300 rounded mt-1">
+                </div>
+                <button type="submit" class="w-full bg-green-600 text-white p-2 rounded">Invia</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sezione Scommessa -->
+    <div id="bet-section" class="hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center">
+        <div class="bg-white p-4 rounded-lg shadow-md w-full max-w-md relative">
+            <button id="close-bet" class="absolute top-2 right-2 text-gray-700 text-xl">&times;</button>
+            <h2 class="text-xl font-bold mb-2">Scommetti su <span id="bet-time"></span></h2>
+            <form id="bet-form">
+                <div class="mb-4">
+                    <label for="bet-points" class="block text-gray-700">Seleziona i punti da scommettere</label>
+                    <select id="bet-points" class="w-full p-2 border border-gray-300 rounded mt-1">
+                        <option value="10">10 punti</option>
+                        <option value="50">50 punti</option>
+                        <option value="100">100 punti</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-green-600 text-white p-2 rounded">Scommetti</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sezione Classifica -->
+    <div id="leaderboard-section" class="hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center">
+        <div class="bg-white p-4 rounded-lg shadow-md w-full max-w-md relative">
+            <button id="close-leaderboard" class="absolute top-2 right-2 text-gray-700 text-xl">&times;</button>
+            <h2 class="text-xl font-bold mb-2">Classifica</h2>
+            <ul id="leaderboard" class="list-disc pl-5">
+                <!-- La classifica verrà popolata dinamicamente -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let users = [];
+        let currentUser = null;
+
+        // Funzione per mostrare la sezione admin
+        document.getElementById('admin-button').addEventListener('click', function() {
+            document.getElementById('admin-section').classList.remove('hidden');
+        });
+
+        // Funzione per chiudere la sezione admin
+        document.getElementById('close-admin').addEventListener('click', function() {
+            document.getElementById('admin-section').classList.add('hidden');
+        });
+
+        // Funzione per gestire l'invio della password admin
+        document.getElementById('admin-password-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const password = document.getElementById('admin-password').value;
+            if (password === 'Admin123') {
+                document.getElementById('admin-password-form').classList.add('hidden');
+                document.getElementById('admin-form').classList.remove('hidden');
+            } else {
+                alert('Password errata');
+            }
+        });
+
+        // Funzione per gestire l'invio del modulo admin
+        document.getElementById('admin-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const lastMessageTime = document.getElementById('last-message-time-admin').value;
+            const responseTime = document.getElementById('response-time').value;
+
+            // Aggiorna l'ultimo messaggio
+            const formattedTime = new Date(lastMessageTime).toLocaleString('it-IT', { hour12: false, hour: '2-digit', minute: '2-digit', day: '2-digit', month: 'long' });
+            document.getElementById('last-message-time').innerText = formattedTime;
+
+            // Logica per assegnare i punti ai vincitori
+            const winners = users.filter(user => user.betTime == responseTime);
+            winners.forEach(winner => {
+                winner.points += parseInt(winner.betPoints) * 2; // Assegna i punti al vincitore
+            });
+
+            alert('Modulo admin inviato');
+            document.getElementById('admin-section').classList.add('hidden');
+        });
+
+        // Funzione per mostrare la sezione scommessa
+        function placeBet(time) {
+            document.getElementById('bet-time').innerText = time;
+            document.getElementById('bet-section').classList.remove('hidden');
+        }
+
+        // Funzione per chiudere la sezione scommessa
+        document.getElementById('close-bet').addEventListener('click', function() {
+            document.getElementById('bet-section').classList.add('hidden');
+        });
+
+        // Funzione per gestire l'invio del modulo scommessa
+        document.getElementById('bet-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const betTime = document.getElementById('bet-time').innerText;
+            const betPoints = document.getElementById('bet-points').value;
+            const userPoints = parseInt(document.getElementById('user-points').innerText);
+
+            if (userPoints >= betPoints) {
+                document.getElementById('user-points').innerText = userPoints - betPoints;
+                currentUser.betTime = betTime;
+                currentUser.betPoints = betPoints;
+                alert(`Hai scommesso ${betPoints} punti su ${betTime}`);
+                document.getElementById('bet-section').classList.add('hidden');
+            } else {
+                alert('Non hai abbastanza punti per scommettere');
+            }
+        });
+
+        // Funzione per mostrare la sezione classifica
+        document.getElementById('leaderboard-button').addEventListener('click', function() {
+            const leaderboard = document.getElementById('leaderboard');
+            leaderboard.innerHTML = '';
+            users.sort((a, b) => b.points - a.points).forEach(user => {
+                const li = document.createElement('li');
+                li.textContent = `${user.username}: ${user.points} punti`;
+                leaderboard.appendChild(li);
+            });
+            document.getElementById('leaderboard-section').classList.remove('hidden');
+        });
+
+        // Funzione per chiudere la sezione classifica
+        document.getElementById('close-leaderboard').addEventListener('click', function() {
+            document.getElementById('leaderboard-section').classList.add('hidden');
+        });
+
+        // Funzione per gestire l'invio del modulo di login
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            let user = users.find(user => user.username === username);
+
+            if (!user) {
+                user = { username: username, points: 100, betTime: null, betPoints: null };
+                users.push(user);
+            }
+
+            currentUser = user;
+            document.getElementById('user-points').innerText = currentUser.points;
+            document.getElementById('login-section').classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
